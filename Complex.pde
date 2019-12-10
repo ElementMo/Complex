@@ -68,13 +68,9 @@ void drawLine(float x1, float y1, float x2, float y2) {
     float newy2 = lerp(y1, y2, t+line_gap);
     line(newx, newy, newx2, newy2);
 
-    PVector comp1 = complex2(newx, newy);
-    PVector comp2 = complex2(newx2, newy2);
+    PVector comp1 = complex(newx, newy);
+    PVector comp2 = complex(newx2, newy2);
     line(comp1.x, comp1.y, comp2.x, comp2.y);
-
-    PVector comp1Rev = complex3(newx, newy);
-    PVector comp2Rev = complex3(newx2, newy2);
-    line(comp1Rev.x, comp1Rev.y, comp2Rev.x, comp2Rev.y);
   }
 }
 void drawTri(PVector p1, PVector p2, PVector p3) {
@@ -105,9 +101,6 @@ PVector complex3(float x, float y) {
   float angle = atan2(y, x);
   PVector cv = new PVector(x, y);
   cv.rotate(angle * anima2);
-  cv.x = -cv.x;
+  cv.mult(-1);
   return cv;
-}
-void mouseWheel(MouseEvent e) {
-  anima -= e.getAmount()*0.01;
 }
